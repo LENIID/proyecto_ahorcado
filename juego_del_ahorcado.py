@@ -6,7 +6,7 @@ import time
 
 def read():
 
-    num = int(input("bienvenido al juego AHORCADO\n presiona 1 para jugar"))
+    num = int(input("====//bienvenido al juego AHORCADO//=======\n presiona 1 para jugar: "))
     assert num == 1, "xd"  
     with open("./archivos/data.txt", "r", encoding="utf-8") as f:
         words=[line for line in f]
@@ -33,7 +33,6 @@ def read():
             break
          print(" ¡Adivina la palabra!\n vidas:" + str(vidas) )
          print(guion23)
-         print(word2)
          letra=input("Escribe una letra : ")
          assert letra.isalpha, "debes ingresar una letra"
          box = word2.count(letra)
@@ -81,7 +80,7 @@ def read():
     os.system("cls")
     if box22 <=1:
        print("Felicidades GANASTE!!!\n La palabra era: " + word1)
-       time.sleep(2)
+       time.sleep(5)
        os.system("cls")
        write()
     elif vidas <=LIMITE:
