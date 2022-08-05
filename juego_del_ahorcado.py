@@ -13,30 +13,27 @@ def read():
         word1= random.choice(words)
         longuitud = len(word1)
         longuitud= longuitud -1
-        word2 = [i for i in word1]
-        word2.pop(longuitud)
-        word3 = word2
+        word2 = [i for i in word1 ]
+        del word2[longuitud]
         guion23 = list("_" * longuitud)
-        word2 = tuple(word2)
         
        
-        
-        
         time.sleep(1) 
         
         os.system("cls")
          
-        box22 = 1
+        box22 = 2
+
         LIMITE = 1
         vidas = longuitud + 2
-        while box22 != 0:
+        while box22 != 1:
          box22=box22
          box22 = guion23.count("_")
          print(" ¡Adivina la palabra!\n vidas:" + str(vidas) )
          print(guion23)
+         print(word2)
          letra=input("Escribe una letra : ")
          assert letra.isalpha, "debes ingresar una letra"
-        #  assert len(letra)==1,"Solo puedes poner 1 letra"
          box = word2.count(letra)
          if vidas <= LIMITE:
             break
@@ -44,40 +41,47 @@ def read():
             vidas -=1
             os.system("cls")
             continue
-         elif box == 2:
-            box2 = word2.index(letra)
-            box24 = word3.index(letra) 
-            box2 = box2 +1
-            guion23.insert(box2, letra)
-            box2 = box2 -1
-            guion23.pop(box2)
-            guion23 = guion23
-            word3.pop(box24)
-            word3.insert(box24, "_")
-            box24 = 0
-            box24 = word3.index(letra)
-            box24 = box24 + 1 
-            guion23.insert(box24, letra)
-            box24 = box24 - 1
-            guion23.pop(box24)
-            box24 = 0 
-            box24 = word3.index(letra)
-            word3.pop(box24)
-            word3.insert(box24, "_")
-            os.system("cls")
+         elif box > 1:
+            
+            while box!= 0:
+             box2 = word2.index(letra)
+             box24 = word2.index(letra) 
+             box2 = box2 +1
+             guion23.insert(box2, letra)
+             box2 = box2 -1
+             del guion23[box2]
+             guion23 = guion23
+             del word2[box24]
+             word2.insert(box24, "_")
+             box -= 1
+             box24 = 0
+             box24 = word2.index(letra)
+             box24 = box24 + 1 
+             guion23.insert(box24, letra)
+             box24 = box24 - 1
+             del guion23[box24]
+             box24 = 0 
+             box24 = word2.index(letra)
+             del word2[box24]
+             word2.insert(box24, "_")
+             box -= 1
+             os.system("cls")
 
          elif box == 1:
             box2 = word2.index(letra)
-            box24 = word3.index(letra)
+            box24 = word2.index(letra)
             box2 = box2 +1
             guion23.insert(box2, letra)
             box2 = box2 -1
-            guion23.pop(box2)
+            del guion23[box2]
             guion23 = guion23 
             os.system("cls")
     os.system("cls")
-    if box22 == 0:
+    if box22 <=1:
        print("Felicidades GANASTE!!!\n La palabra era: " + word1)
+       time.sleep(2)
+       os.system("cls")
+       write()
     elif vidas <=LIMITE:
         print("========PERDISTE============\n La palabra era: " + word1)
     
@@ -95,7 +99,19 @@ def game():
 
 
 def write():
-    pass 
+    with open("./archivos/registro.txt", "w", encoding="utf-8") as f:
+        name = input("Escribe tu nombre: ")
+        emal = input("escribe tu correo electronico: ")
+        jugador = name + emal
+        f.write(jugador)
+        f.write("\n")
+        print("Has sido agregado a la base de datos")
+        print("Termino mi programa :)")
+
+
+
+
+    
 
 
 
