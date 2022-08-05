@@ -24,20 +24,22 @@ def read():
          
         box22 = 2
 
-        LIMITE = 1
+        LIMITE = 0
         vidas = longuitud + 2
         while box22 != 1:
          box22=box22
          box22 = guion23.count("_")
+         if vidas <= LIMITE:
+            break
          print(" ¡Adivina la palabra!\n vidas:" + str(vidas) )
          print(guion23)
          print(word2)
          letra=input("Escribe una letra : ")
          assert letra.isalpha, "debes ingresar una letra"
          box = word2.count(letra)
-         if vidas <= LIMITE:
-            break
-         elif box == 0:
+        #  if vidas <= LIMITE:
+        #     break
+         if box == 0:
             vidas -=1
             os.system("cls")
             continue
