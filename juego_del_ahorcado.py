@@ -14,7 +14,7 @@ def read(num):
     with open("./archivos/data.txt", "r", encoding="utf-8") as f:
         words=[line for line in f]
         word1= random.choice(words)
-        # word1 = "recipiente"
+        # word1 = "servilleta"
         longuitud = len(word1)
         longuitud= longuitud -1
         # word1 = "recipiente"
@@ -107,7 +107,7 @@ def read(num):
        print("Tu puntuacion fue " + str(puntos) + " Puntos :)")
        time.sleep(5)
        os.system("cls")
-       write()
+       write(puntos)
     elif vidas <=LIMITE:
         hangman = paint.picturel
         print(hangman)
@@ -115,39 +115,19 @@ def read(num):
         puntos=0
         print("Tu puntuacion fue " + str(puntos) + " Puntos :)")
 
-    
-
-       
-
-
-def game():
-    print("Termino mi programa :)")
-    
 
 
 
-
-
-
-
-def write():
+def write(puntos):
     with open("./archivos/registro.txt", "w", encoding="utf-8") as f:
         name = input("Escribe tu nombre: ")
-        emal = input("escribe tu correo electronico: ")
-        jugador = name + emal
+        puntos =" Puntos: " + str(puntos)
+        jugador = name + puntos
+        print(puntos)
+        print(jugador)
         f.write(jugador)
         f.write("\n")
         print("Has sido agregado a la base de datos")
-
-
-
-
-    
-
-
-
-
-
 
 
 
