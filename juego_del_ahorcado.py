@@ -1,21 +1,37 @@
+import paint
 import random
 import os
 import time
 
 
 
-def read():
-
-    num = int(input("====//bienvenido al juego AHORCADO//=======\n presiona 1 para jugar: "))
+def read(num):
+    # print(hangman)
+    # num = int(input("====//bienvenido al juego AHORCADO//=======\n presiona 1 para jugar: "))
+    # picture1= hangman
+    num = int(num)
     assert num == 1, "xd"  
     with open("./archivos/data.txt", "r", encoding="utf-8") as f:
         words=[line for line in f]
         word1= random.choice(words)
+        # word1 = "recipiente"
         longuitud = len(word1)
         longuitud= longuitud -1
+        # word1 = "recipiente"
         word2 = [i for i in word1 ]
         del word2[longuitud]
         guion23 = list("_" * longuitud)
+        entrance= "áéíóúñ"
+        out = "aeioun"
+        change = str.maketrans(entrance, out)
+        word999= "".join(word2)
+        word999 =word999.translate(change)
+        word2.clear()
+        word2= [i for i in word999]
+
+        
+        
+
         
        
         time.sleep(1) 
@@ -23,23 +39,27 @@ def read():
         os.system("cls")
          
         box22 = 2
-
+        hangman = paint.picture
         LIMITE = 0
         vidas = longuitud + 2
+        puntos = 100
         while box22 != 1:
          box22=box22
          box22 = guion23.count("_")
          if vidas <= LIMITE:
             break
          print(" ¡Adivina la palabra!\n vidas:" + str(vidas) )
-         print(guion23)
+         print(hangman)
+         print(" ".join(guion23))
+         if puntos <= 70:
+            hangman=paint.pictures
          letra=input("Escribe una letra : ")
+        #  assert len(letra)==1, "Solo puedes ingresar una letra"
          assert letra.isalpha, "debes ingresar una letra"
          box = word2.count(letra)
-        #  if vidas <= LIMITE:
-        #     break
          if box == 0:
             vidas -=1
+            puntos -=10
             os.system("cls")
             continue
          elif box > 1:
@@ -55,6 +75,8 @@ def read():
              del word2[box24]
              word2.insert(box24, "_")
              box -= 1
+             if box == 0:
+                break
              box24 = 0
              box24 = word2.index(letra)
              box24 = box24 + 1 
@@ -79,19 +101,28 @@ def read():
             os.system("cls")
     os.system("cls")
     if box22 <=1:
+       hangman= paint.picturew
+       print(hangman)
        print("Felicidades GANASTE!!!\n La palabra era: " + word1)
+       print("Tu puntuacion fue " + str(puntos) + " Puntos :)")
        time.sleep(5)
        os.system("cls")
        write()
     elif vidas <=LIMITE:
+        hangman = paint.picturel
+        print(hangman)
         print("========PERDISTE============\n La palabra era: " + word1)
+        puntos=0
+        print("Tu puntuacion fue " + str(puntos) + " Puntos :)")
+
     
 
        
 
 
 def game():
-    pass
+    print("Termino mi programa :)")
+    
 
 
 
@@ -107,7 +138,6 @@ def write():
         f.write(jugador)
         f.write("\n")
         print("Has sido agregado a la base de datos")
-        print("Termino mi programa :)")
 
 
 
@@ -124,46 +154,39 @@ def write():
 
 
 
-# def menu():
-#     # read()
+def menu():
+    # read()
     
-#         num = input("""                         ----💲💲BIENVENIDO AL JUEGO💲💲 ------ \n
+        num = input("""                         ----💲💲BIENVENIDO AL JUEGO💲💲 ------ \n
     
-#          ###     #    #    #####    ####    #####     ###     #####     ####
-#         #   #    #    #   #     #   #   #  #         #   #    #    #   #    #
-#        ######    ######  #       #  ####   #        ######    #     # #      #
-#       #      #   #    #   #     #   #   #  #       #      #   #    #   #    #
-#      #        #  #    #    #####    #    #  ##### #        #  #####     #### \n
+         ###     #    #    #####    ####    #####     ###     #####     ####
+        #   #    #    #   #     #   #   #  #         #   #    #    #   #    #
+       ######    ######  #       #  ####   #        ######    #     # #      #
+      #      #   #    #   #     #   #   #  #       #      #   #    #   #    #
+     #        #  #    #    #####    #    #  ##### #        #  #####     #### \n
 
-#                          INSERTA -- 1 -- PARA JUGAR :)
-#     """)
+                         INSERTA -- 1 -- PARA JUGAR :)
+    """)
 
-
-#         # num = (input(""))
-#         box = num.count ("-")          
-#         assert num != "", "No puedes ingresar un espacio vacio"
-#         assert num != " ", "No puedes ingresar un espacio vacio"
-#         assert num != "  ", "No puedes ingresar un espacio vacio"
-#         assert num != "   ", "No puedes ingresar un espacio vacio"
-#         assert num != "    ", "No puedes ingresar un espacio vacio"
-#         assert box == 0, "Escribe un numero positivo"
-#         assert num.isnumeric(), "debes ingresar solo numeros"
-#         # return num
-#         print(read(num))
+        box = num.count ("-")          
+        assert num != "", "No puedes ingresar un espacio vacio"
+        assert num != " ", "No puedes ingresar un espacio vacio"
+        assert box == 0, "Escribe un numero positivo"
+        assert num.isnumeric(), "debes ingresar solo numeros"
+        print(read(num))
         
 
 
 
 
 def run():
-    read()
+    menu()
     
     
-    # print(game(read))
-    # menu()
-    # print(read(num))
-    # game()
-    # print(read)
+    
+    print("Termino mi programa :)")
+
+    
     
 
 
