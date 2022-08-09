@@ -6,18 +6,13 @@ import time
 
 
 def read(num):
-    # print(hangman)
-    # num = int(input("====//bienvenido al juego AHORCADO//=======\n presiona 1 para jugar: "))
-    # picture1= hangman
     num = int(num)
     assert num == 1, "xd"  
     with open("./archivos/data.txt", "r", encoding="utf-8") as f:
         words=[line for line in f]
         word1= random.choice(words)
-        # word1 = "servilleta"
         longuitud = len(word1)
         longuitud= longuitud -1
-        # word1 = "recipiente"
         word2 = [i for i in word1 ]
         del word2[longuitud]
         guion23 = list("_" * longuitud)
@@ -54,7 +49,6 @@ def read(num):
          if puntos <= 70:
             hangman=paint.pictures
          letra=input("Escribe una letra : ")
-        #  assert len(letra)==1, "Solo puedes ingresar una letra"
          assert letra.isalpha, "debes ingresar una letra"
          box = word2.count(letra)
          if box == 0:
@@ -135,8 +129,6 @@ def write(puntos):
 
 
 def menu():
-    # read()
-    
         num = input("""                         ----💲💲BIENVENIDO AL JUEGO💲💲 ------ \n
     
          ###     #    #    #####    ####    #####     ###     #####     ####
