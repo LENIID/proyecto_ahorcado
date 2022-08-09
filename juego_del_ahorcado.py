@@ -113,7 +113,7 @@ def read(num):
 
 
 def write(puntos):
-    with open("./archivos/registro.txt", "w", encoding="utf-8") as f:
+    with open("./archivos/registro.txt", "a", encoding="utf-8") as f:
         name = input("Escribe tu nombre: ")
         puntos =" Puntos: " + str(puntos)
         jugador = name + puntos
